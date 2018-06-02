@@ -14,6 +14,7 @@ public class FileHelper {
 
     static void writeToFile(String fileName, String data, Context c) {
 
+        // openFileOutput membuka berkas sesuai dengan nama nya
         try {
             OutputStreamWriter osw = new OutputStreamWriter(
                     c.openFileOutput(fileName, Context.MODE_PRIVATE));
@@ -34,14 +35,22 @@ public class FileHelper {
             InputStream stream = c.openFileInput(fileName);
 
             if (stream != null) {
+
+                // data pada berkas akan dibaca
                 InputStreamReader inputStreamReader = new InputStreamReader(stream);
+
+                // setiap data tiap baris dalam berkas akan diperoleh
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
                 String receiveString = "";
                 StringBuilder stringBuilder = new StringBuilder();
 
+                // baca data tiap baris atau di loops
                 while ((receiveString = bufferedReader.readLine()) != null) {
+
+                    // jika ada data maka akan ditambahkan kedalam objek stringBuilder
                     stringBuilder.append(receiveString);
                 }
+
                 inputStreamReader.close();
                 ret = stringBuilder.toString();
 
