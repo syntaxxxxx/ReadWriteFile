@@ -1,6 +1,8 @@
 package com.ramadhan.readwritefile;
 
+import android.Manifest;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnOpen.setOnClickListener(this);
         btnSave.setOnClickListener(this);
 
+        // get berkas secara otomatis dari internal storage
         path = getFilesDir();
 
     }
@@ -65,7 +68,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void saveFile() {
         if (editTitle.getText().toString().isEmpty()) {
-            Toast.makeText(this, "Harus Diisi Dulu", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Harus Diisi Dulu",
+                    Toast.LENGTH_LONG).show();
 
         } else {
             String title = editTitle.getText().toString();
@@ -112,7 +116,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void newFile() {
         editTitle.setText("");
         editContent.setText("");
-        Toast.makeText(this, "Clearing File", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Clearing File",
+                Toast.LENGTH_SHORT).show();
 
     }
 
@@ -122,7 +127,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String text = FileHelper.readFromFile(this, title);
         editTitle.setText(title);
         editContent.setText(text);
-        Toast.makeText(this, "Loading " + title + " Data ", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Loading " + title + " Data ",
+                Toast.LENGTH_SHORT).show();
 
     }
 }
